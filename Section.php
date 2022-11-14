@@ -40,6 +40,11 @@ class Section
         return $this;
     }
 
+    public function get(string $key): string
+    {
+        return $this;
+    }
+
     public function list(string... $columns): self
     {
         return $this;
@@ -133,7 +138,7 @@ class Section
     {
     }
 
-    public function first(): Section
+    public function first(): ?Section
     {
     }
 

@@ -22,17 +22,7 @@ function section(string $key): \Section
     return new Section($faker, $key);
 };
 
-/**
- * @return \Section
- */
-function bySection(string $key): \Section
-{
-};
-
-/**
- * @return string
- */
-function need(string $key, string $default): string
+function request(): mixed
 {
 };
 
@@ -43,6 +33,16 @@ class Section
     public function __construct(private \Faker\Generator $faker, string $key)
     {
         $this->key = $key;
+    }
+
+    public function section(string $key): self
+    {
+        return $this;
+    }
+
+    public function list(string... $columns): self
+    {
+        return $this;
     }
 
     public function label(string $label): self
@@ -129,6 +129,14 @@ class Section
     {
     }
 
+    public function where(string $key, mixed $value): Section
+    {
+    }
+
+    public function first(): Section
+    {
+    }
+
     /** @return \Section[] */
     public function multiple(string $key): Multiple
     {
@@ -174,6 +182,12 @@ final class Multiple implements ArrayAccess, Countable, IteratorAggregate
 
     /** @return \Section[] */
     public function max(int $max): self
+    {
+        return $this;
+    }
+
+    /** @return \Section[] */
+    public function sortable(): self
     {
         return $this;
     }
@@ -311,6 +325,11 @@ final class Text
     }
 
     public function required(): self
+    {
+        return $this;
+    }
+
+    public function unique(): self
     {
         return $this;
     }
@@ -527,6 +546,11 @@ final class Select
     }
 
     public function fromDirectory(string $directory): self
+    {
+        return $this;
+    }
+
+    public function fromSection(string $key): Section
     {
         return $this;
     }

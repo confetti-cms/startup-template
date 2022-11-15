@@ -39,6 +39,8 @@ function request(): mixed
 /**
  * @property string active
  * @property string title
+ * @property string subtitle
+ * @property string text
  * @property string template
  * @property string slug
  */

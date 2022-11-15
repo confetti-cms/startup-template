@@ -22,6 +22,16 @@ function section(string $key): \Section
     return new Section($faker, $key);
 };
 
+/**
+ * @return \Section
+ */
+function extentSection(string $key): \Section
+{
+    $faker     = \Faker\Factory::create('lorem');
+    $faker->addProvider(new Faker\Provider\Lorem($faker));
+    return new Section($faker, $key);
+};
+
 function request(): mixed
 {
 };

@@ -1,10 +1,12 @@
 @php
-    // Generate a list with 3 columns for the overview 
-    $page = section('page')->list('active', 'title', 'slug');
+    $page = section('page');
+
+    // Generate a list with 3 columns for the pages overview
+    $page->list('active', 'title', 'slug');
 
     // Define de fields for every page
     $title = $page->text('title')->min(2)->max(300)->required();
-    $page->text('slug')->urlFriendly()->unique()->default($title)->required();
+    $page->text('slug')->urlFriendly()->unique()->default($title);
     $page->checkbox('active');
     $page->select('template')->fromDirectory('views.templates');
 

@@ -57,6 +57,7 @@ class Section
 
     public function list(string... $columns): self
     {
+        $this->key = 'tmp_fake_suppress_error';
         return $this;
     }
 

@@ -324,6 +324,11 @@ final class Text
         return $this;
     }
 
+    public function urlFriendly(): self
+    {
+        return $this;
+    }
+
     public function translate(): self
     {
         return $this;

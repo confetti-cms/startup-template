@@ -3,8 +3,8 @@
     $page = section('page')->list('active', 'title', 'slug');
 
     // Define de fields for every page
-    $page->text('title')->min(2)->max(300)->required();
-    $page->text('uri')->unique()->required();
+    $title = $page->text('title')->min(2)->max(300)->required();
+    $page->text('slug')->urlFriendly()->unique()->default($title)->required();
     $page->checkbox('active');
     $page->select('template')->fromDirectory('views.templates');
 

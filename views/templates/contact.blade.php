@@ -1,5 +1,5 @@
 @extends('page')
-@php /** @var \Section $page */@endphp
+@php($page = extentSection('page'))
 
 @section('content')
     @php($contact = $page->section('contact'))

@@ -36,6 +36,12 @@ function request(): mixed
 {
 };
 
+/**
+ * @property string active
+ * @property string title
+ * @property string template
+ * @property string slug
+ */
 class Section
 {
     private string $key;
@@ -157,6 +163,11 @@ class Section
     public function multiple(string $key): Multiple
     {
         return new Multiple($this->faker, "$this->key.$key");
+    }
+
+    public function __get(string $name)
+    {
+        return 'tmp_mock';
     }
 }
 

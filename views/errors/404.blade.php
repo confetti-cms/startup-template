@@ -5,6 +5,6 @@
 @endsection
 
 <div>
-    {{ $errorContent->get('title') }}<br>
+    {{ $errorContent->title }}<br>
     {{ $errorContent->textarea('description') }}
 </div>

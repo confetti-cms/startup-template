@@ -1,5 +1,5 @@
 @php
-    // Generate a list with 3 columns for the product overview 
+    // Generate a list with 3 columns for the overview 
     $page = section('page')->list('active', 'title', 'slug');
 
     // Define de fields for every page

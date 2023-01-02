@@ -58,6 +58,11 @@ class Section
         return $this;
     }
 
+    public function role(string $key): self
+    {
+        return $this;
+    }
+
     public function get(string $key): string
     {
         return $this;

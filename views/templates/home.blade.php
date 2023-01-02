@@ -21,5 +21,6 @@
     @php($features = $page->section('features'))
     @foreach($features->multiple('features') as $feature)
         <div>{{ $feature->textarea('text') }}</div>
+        <div>{{ $employer->select('department')->fromSection('departments.*.title') }}</div>
     @endforeach
 @endsection

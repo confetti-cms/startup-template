@@ -52,16 +52,13 @@
         </button>
     @endif
     @if(count($components) === 0)
-        {{--        show welcome first page in dashboard, documentation, handy links, ... --}}
-        <div class="flex items-center justify-center w-full px-4 py-2 mt-8 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-            <a href="/admin/blog">Create your first page</a>
-        </div>
+        <app-button href="/admin/blog" anchor >Create your first page</app-button>
     @endif
 </div>
 @pushonce('script_middle')
-    <script>
+    {{-- <script>
         function countFields() {
             return document.querySelectorAll("[x-bind='field']").length;
         }
-    </script>
+    </script> --}}
 @endpushonce

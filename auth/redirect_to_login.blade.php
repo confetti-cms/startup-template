@@ -4,7 +4,7 @@
     Redirect to login page...
 </div>
 @pushonce('script_login_redirect')
-    <script>
+    {{-- <script>
         document.addEventListener('config:init', () => {
             console.log("login redirect begin");
 
@@ -34,5 +34,5 @@
             xhr.send()
             console.log("request send");
         });
-    </script>
+    </script> --}}
 @endpushonce

@@ -12,6 +12,17 @@
     // Use hashId because alpinejs can't handel the / in the key
 @endphp
     <div x-data="{ {{ hashId($component->key) }}: '{{ $currentValue }}' }">
+        <Form-Kit
+            type="select"
+            label="{{$component->getDecoration('label')['value']}}"
+            name="small_country"
+            :options="[
+                'Monaco',
+                'Vatican City',
+                'Maldives',
+                'Tuvalu',
+            ]"
+        ></Form-Kit>
     <label class="block text-bold text-xl mb-4">
         {{ $component->getDecoration('label')['value'] }}
     </label>

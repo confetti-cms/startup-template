@@ -9,6 +9,7 @@ export default {
                 [
                     "primary",
                     "default",
+                    "success",
                     "error",
                     "light",
                     "dark",
@@ -91,14 +92,22 @@ setup(props) {
                 error: 'border-2 text-error border-error hover:bg-error-light hover:text-white',
             },
             clear: {
-                primary: 'text-primary hover:bg-primary-light',
+                primary: 'text-primary hover:bg-primary-light hover:text-white',
                 secondary: 'text-secondary hover:bg-secondary-light',
+                success: 'bg-success text-white hover:opacity-80',
+                error: 'text-error hover:bg-error-light',
+            },
+            text: {
+                primary: 'text-primary hover:text-primary-light',
+                secondary: 'text-secondary hover:text-secondary-light',
                 success: 'bg-success text-white hover:opacity-80',
                 error: 'text-error hover:bg-error-light',
             },
         };
 
         classes += ` ${themes[props.variant][props.type]}`;
+
+        classes += ` ${props.fullWidth ? 'block w-full' : ''}`;
 
         return classes;
       });

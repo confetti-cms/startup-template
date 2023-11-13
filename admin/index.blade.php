@@ -32,7 +32,7 @@
                 "@formkit/utils": "https://cdn.jsdelivr.net/npm/@formkit/utils@1.0.0-beta.8/dist/index.mjs",
                 "@formkit/validation": "https://cdn.jsdelivr.net/npm/@formkit/validation@1.0.0-beta.8/dist/index.mjs",
                 "@formkit/vue": "https://cdn.jsdelivr.net/npm/@formkit/vue@1.0.0-beta.8/dist/index.mjs",
-                "@formkit/auto-animate": "https://cdnjs.cloudflare.com/ajax/libs/auto-animate/0.8.0/index.min.js"
+                "@formkit/auto-animate": "https://cdnjs.cloudflare.com/ajax/libs/auto-animate/0.8.1/vue/index.mjs"
             }
         }
       </script>
@@ -62,11 +62,13 @@
                             @include('admin.header', ['componentStore' => $componentStore])
 
                             <main class="h-full pb-16 overflow-y-auto">
-                                <app-button @click="toggleDarkMode()">yees</app-button>
                                 @include('admin.middle', ['componentStore' => $componentStore, 'contentStore' => $contentStore, 'currentContentId' => $currentContentId])
                             </main>
                             <div @click="openModal()">Modaaal</div>
-                            @include('admin.structure.components.modal')
+
+                            <div v-if="modal">
+                                @include('admin.structure.components.modal')
+                            </div>
                         </div>
                     </div>
                 @else

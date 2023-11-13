@@ -6,9 +6,9 @@
      * @var string $contentId
      */
 @endphp
-<div class="block text-bold text-xl mt-8 mb-4">
+{{-- <div class="block text-bold text-xl mt-8 mb-4">
   {{ $component->getDecoration('label')['value'] }}
-</div>
+</div> --}}
 @php
   $content = rawurlencode($contentStore->find($contentId) ?? $component->getDecoration('default')['value'] ?? '')
 @endphp
@@ -45,7 +45,7 @@
     </template>
 </template> --}}
 
-<div x-data="editor(decodeURIComponent('{!! $content !!}'), '{{ $contentId }}')">
+{{-- <div x-data="editor(decodeURIComponent('{!! $content !!}'), '{{ $contentId }}')">
   <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
     <template x-if="isLoaded()">
         <div id="menu" class="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
@@ -92,9 +92,9 @@
                 <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(81px, 0px, 0px);"></div>
             </div>
         </div>
-    </template>
+    </template> --}}
 
-    @component('admin.structure.components.modal')
+    {{-- @component('admin.structure.components.modal')
       <div>
         @php($textPars =[
           'ref' => 'urlInput',
@@ -125,10 +125,12 @@
         <button @click="closeModal2()" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
           Cancel
         </button>
-    @endcomponent
-    <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
+    @endcomponent --}}
+
+    {{-- <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
         <div x-ref="element" class="prose min-h-[200px] block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"></div>
-    </div>
+    </div> --}}
+
   </div>
 </div>
 

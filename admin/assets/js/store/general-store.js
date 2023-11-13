@@ -33,7 +33,8 @@ export const useGeneralStore = defineStore('general', {
     isSideMenuOpen: false,
     isDarkMode: !!darkModeLS.get(),
     modal: null,
-    toaster: null
+    toaster: null,
+    isPagesMenuOpen: false,
   }),
   actions: {
     toggleDarkMode() {

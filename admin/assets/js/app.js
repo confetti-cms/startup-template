@@ -6,6 +6,7 @@ import {
 import AppButton from './components/button.js'
 import { storeToRefs } from 'pinia';
 import { plugin, defaultConfig } from '@formkit/vue'
+import { autoAnimatePlugin } from '@formkit/auto-animate'
 
 const pinia = createPinia()
 
@@ -74,8 +75,16 @@ createApp({
 
 
       const generalStore = useGeneralStore();
-      const { toggleDarkMode, isSideMenuOpen } = generalStore;
-      const { isDarkMode, modal } = storeToRefs(generalStore);
+      const {
+        toggleDarkMode,
+        isSideMenuOpen,
+      } = generalStore;
+
+      const {
+        isDarkMode,
+        modal,
+        isPagesMenuOpen
+      } = storeToRefs(generalStore);
       function openModal() {
         generalStore.openModal({
           message: '1234',
@@ -84,15 +93,27 @@ createApp({
           },
         });
       }
+
+      console.log(' isPagesMenuOpen',  isPagesMenuOpen);
+
+
+      function togglePagesMenu() {
+        console.log('dssdds', isPagesMenuOpen.value);
+        isPagesMenuOpen.value = !isPagesMenuOpen.value;
+      }
+
         return {
           modal,
           isDarkMode,
           openModal,
           toggleDarkMode,
-          isSideMenuOpen
+          isSideMenuOpen,
+          isPagesMenuOpen,
+          togglePagesMenu
         }
     }
 })
 .use(plugin, defaultConfig)
+.use(autoAnimatePlugin)
 .use(pinia)
 .mount('#app')

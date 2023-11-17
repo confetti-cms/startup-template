@@ -7,6 +7,7 @@ import AppButton from './components/button.js'
 import { storeToRefs } from 'pinia';
 import { plugin, defaultConfig } from '@formkit/vue'
 import { autoAnimatePlugin } from '@formkit/auto-animate'
+import initStorage from './helpers/storage.js';
 
 const pinia = createPinia()
 
@@ -16,6 +17,13 @@ createApp({
         AppButton,
     },
     setup() {
+      const generalStore = useGeneralStore();
+      const appStorage = initStorage('appData');
+      console.log('appStorage', appStorage);
+
+// const darkModeLS = generalStoreLS.setPartial('isDarkMode');
+      // generalStore.initApp();
+
       // console.log("login redirect begin");
 
       // let apiUrl;
@@ -70,11 +78,6 @@ createApp({
 
       //     }, 4000);
 
-
-
-
-
-      const generalStore = useGeneralStore();
       const {
         toggleDarkMode,
         isSideMenuOpen,

@@ -35,11 +35,48 @@ export const useGeneralStore = defineStore('general', {
     modal: null,
     toaster: null,
     isPagesMenuOpen: false,
+    appData: {}
   }),
   actions: {
     toggleDarkMode() {
       this.isDarkMode = !this.isDarkMode;
       darkModeLS.set(this.isDarkMode);
+    },
+    async initApp() {
+      // const response = await fetch('/config.blade.php');
+      // if (response.status === 200) {
+      //   const apiUrl = await response.json();
+      //   console.log('apiUrl', apiUrl);
+      //   this.appData['apiUrl'] = apiUrl.api_url;
+      //   console.log('this.appData', this.appData);
+
+      //   this.setCookie();
+      // } else {
+      //   console.log('has error');
+      // }
+    },
+    async setCookie() {
+      // console.log('cookie');
+      // const apiUrl = this.appData.apiUrl;
+      // console.log('apiUrl', apiUrl);
+      // if (apiUrl) {
+      //   const response = await fetch(`${apiUrl}/confetti-cms/auth/login`);
+      //   console.log('response', response);
+
+
+      //   const {state, redirect_url} = await response.json();
+      //   let date = new Date();
+      //   date.setTime(date.getTime() + (10 * 60 * 1000));
+      //   let expires = "; expires=" + date.toUTCString();
+      //   document.cookie = "state=" + state + expires + "; path=/";
+      //   // set cookie to redirect to this page after login
+      //   document.cookie = "redirect_after_login=" + window.location.href + "; path=/";
+      //   window.location.href = redirect_url;
+
+      //   if (response.status === 200) {
+
+      //   }
+      // }
     },
     openModal(payload, closeOnConfirm = true) {
       const store = this;

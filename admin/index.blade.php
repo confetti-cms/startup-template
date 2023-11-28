@@ -66,9 +66,9 @@
                             </main>
                             <div @click="openModal()">Modaaal</div>
 
-                            <div v-if="modal">
+                            {{-- <div v-if="modal">
                                 @include('admin.structure.components.modal')
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 @else

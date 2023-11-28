@@ -1,5 +1,4 @@
-export default {
-    initStorage(storageKey) {
+export default function initStorage(storageKey) {
         const storage = localStorage.getItem(storageKey) ? JSON.parse(localStorage.getItem(storageKey)) : {};
         return {
         get: function(key) {
@@ -23,4 +22,3 @@ export default {
         },
         }
     }
-}

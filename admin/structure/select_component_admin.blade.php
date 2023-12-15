@@ -12,13 +12,11 @@
     // Use hashId because alpinejs can't handel the / in the key
 @endphp
     <div x-data="{ {{ hashId($component->key) }}: '{{ $currentValue }}' }">
-        Hier:
-        {{$currentValue}}
-        @{{currentFooter}}
         <Form-Kit
             type="select"
             label="{{$component->getDecoration('label')['value']}}"
-            v-model="currentFooter"
+            :value="getOrFillData('{{$contentId}}','{{$currentValue}}')"
+            @input="updateFormData('{{$contentId}}', $event)"
             name="{{ $contentId }}"
             :options="[
                 @foreach($options as $value => $optionLabel)
@@ -40,24 +38,15 @@
         <option value="{{ $value }}">{{ $optionLabel }}</option>
     @endforeach
 </select> --}}
-@if($component->hasDecoration('fileInDirectories'))
-    @php($children = $componentStore->whereParentKey($component->key))
-        @foreach($children as $child)
-            @php($suffix = str_replace($component->key, '', $child->key))
-            <div x-show="{{ hashId($child->getDecoration('condition')['pointer_key']) }} == '{{ $child->getDecoration('condition')['pointed_key'] }}'">
-                @include("admin.structure.{$child->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $child, 'contentId' => $contentId . $suffix])
-            </div>
-        @endforeach
-@endif
-    {{-- @if($component->hasDecoration('fileInDirectories'))
-    @php($children = $componentStore->whereParentKey($component->key))
-        @foreach($children as $child)
-            @php($suffix = str_replace($component->key, '', $child->key))
-            <div x-show="{{ hashId($child->getDecoration('condition')['pointer_key']) }} == '{{ $child->getDecoration('condition')['pointed_key'] }}'">
-                @include("admin.structure.{$child->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $child, 'contentId' => $contentId . $suffix])
-            </div>
-        @endforeach
-    @endif --}}
+    @if($component->hasDecoration('fileInDirectories'))
+        @php($children = $componentStore->whereParentKey($component->key))
+            @foreach($children as $child)
+                @php($suffix = str_replace($component->key, '', $child->key))
+                <div v-show="getFormValue( '{{$contentId}}' ) == '{{ $child->getDecoration('condition')['pointed_key'] }}'">
+                    @include("admin.structure.{$child->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $child, 'contentId' => $contentId . $suffix])
+                </div>
+            @endforeach
+    @endif
 </div>
 @pushonce('script_select')
     <script>

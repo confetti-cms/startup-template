@@ -24,60 +24,6 @@ createApp({
 
       const { currentFooter } = storeToRefs(dataStore);
 
-      // console.log("login redirect begin");
-
-      // let apiUrl;
-
-
-      // let xhr2 = new XMLHttpRequest();
-      // xhr2.open('GET', '/config.blade.php', true);
-      // xhr2.responseType = 'json';
-      // xhr2.onload = function () {
-      //   let status = xhr2.status;
-      //   if (status === 200) {
-      //     apiUrl = xhr2.response.api_url
-      //     // Alpine.store('config').setApiUrl(xhr2.response.api_url);
-      //     document.dispatchEvent(new CustomEvent('config:init'));
-      //   } else {
-      //     console.error(status, xhr2.response);
-      //     // Alpine.store('config').setApiUrl('error_from_config');
-      //   }
-      // };
-      // xhr2.send()
-
-      // setTimeout(() => {
-
-      //       // let apiUrl = Alpine.store('config').getApiUrl()
-
-      //       if (apiUrl === undefined) {
-      //           console.error('apiUrl is undefined')
-      //       }
-      //       // Get redirect url
-      //       let xhr = new XMLHttpRequest();
-      //       xhr.open('GET', apiUrl + '/confetti-cms/auth/login', true);
-      //       xhr.responseType = 'json';
-      //       xhr.setRequestHeader('Accept', 'application/json');
-      //       xhr.onload = function () {
-      //           let status = xhr.status;
-      //           console.log('xhr', xhr);
-
-      //           if (status === 200) {
-      //               let date = new Date();
-      //               date.setTime(date.getTime() + (10 * 60 * 1000));
-      //               let expires = "; expires=" + date.toUTCString();
-      //               document.cookie = "state=" + xhr.response["state"] + expires + "; path=/";
-      //               // set cookie to redirect to this page after login
-      //               document.cookie = "redirect_after_login=" + window.location.href + "; path=/";
-      //               window.location.href = xhr.response["redirect_url"];
-      //           } else {
-      //               console.error(status, xhr.response);
-      //           }
-      //       };
-      //       xhr.send()
-      //       console.log("request send");
-
-      //     }, 4000);
-
       const {
         toggleDarkMode,
         isSideMenuOpen,

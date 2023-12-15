@@ -11,17 +11,14 @@
     $options = Select::getAllOptions($componentStore, $component);
     // Use hashId because alpinejs can't handel the / in the key
 @endphp
-<script>
-    const = allvalues = {
-        "/section/home/title": "The title",
-        }
-</script>
     <div x-data="{ {{ hashId($component->key) }}: '{{ $currentValue }}' }">
         Hier:
+        {{$currentValue}}
+        @{{currentFooter}}
         <Form-Kit
             type="select"
             label="{{$component->getDecoration('label')['value']}}"
-            v-model="makejs({{$currentValue}})"
+            v-model="currentFooter"
             name="{{ $contentId }}"
             :options="[
                 @foreach($options as $value => $optionLabel)

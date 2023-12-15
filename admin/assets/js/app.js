@@ -12,13 +12,17 @@ import initStorage from './helpers/storage.js';
 const pinia = createPinia()
 
 import { useGeneralStore } from './store/general-store.js';
+import { useDataStore } from './store/data-store.js';
 createApp({
     components: {
         AppButton,
     },
     setup() {
       const generalStore = useGeneralStore();
+      const dataStore = useDataStore();
       generalStore.initApp();
+
+      const { currentFooter } = storeToRefs(dataStore);
 
       // console.log("login redirect begin");
 
@@ -93,14 +97,6 @@ createApp({
         });
       }
 
-      console.log(' isPagesMenuOpen',  isPagesMenuOpen);
-
-      function makejs(value) {
-        console.log('value!!!!!', value);
-
-      }
-
-
       function togglePagesMenu() {
         isPagesMenuOpen.value = !isPagesMenuOpen.value;
       }
@@ -113,7 +109,7 @@ createApp({
           isSideMenuOpen,
           isPagesMenuOpen,
           togglePagesMenu,
-          makejs
+          currentFooter
         }
     }
 })

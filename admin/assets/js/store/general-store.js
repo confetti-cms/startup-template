@@ -59,6 +59,7 @@ export const useGeneralStore = defineStore('general', {
       }
     },
     async setCookie() {
+      console.log('seet cookie');
       const apiUrl = this.appData.apiUrl;
       if (apiUrl) {
         const response = await fetch(`${apiUrl}/confetti-cms/auth/login`);
@@ -66,14 +67,21 @@ export const useGeneralStore = defineStore('general', {
         let date = new Date();
         date.setTime(date.getTime() + (10 * 60 * 1000));
 
+        console.log('redirect_url', redirect_url);
+
         const expires = `; expires=${date.toUTCString()}`;
         document.cookie = `state=${state}${expires}; path=/`;
         // set cookie to redirect to this page after login
-        document.cookie = "redirect_after_login=" + window.location.href + "; path=/";
-        // document.cookie = `redirect_after_login=${window.location.href}; path=/`;
-        window.location.href = redirect_url;
+        // document.cookie = "redirect_after_login=" + window.location.href + "; path=/";
+        document.cookie = `redirect_after_login="${window.location.href}"; path=/`;
         loginStatusLS.set(true);
+        window.location.href = redirect_url;
       }
+
+      // document.cookie = "state=" + xhr.response["state"] + expires + "; path=/";
+      //               // set cookie to redirect to this page after login
+      //               document.cookie = "redirect_after_login=" + window.location.href + "; path=/";
+      //               window.location.href = xhr.response["redirect_url"];
     },
     openModal(payload, closeOnConfirm = true) {
       const store = this;

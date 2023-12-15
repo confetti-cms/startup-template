@@ -1,4 +1,4 @@
-import { createApp, ref } from 'vue';
+import { createApp, computed, ref } from 'vue';
 import {
   createPinia,
   defineStore
@@ -22,7 +22,8 @@ createApp({
       const dataStore = useDataStore();
       generalStore.initApp();
 
-      const { currentFooter } = storeToRefs(dataStore);
+      const { currentFooter, formData } = storeToRefs(dataStore);
+      const { updateFormData, getFormValue } = dataStore;
 
       const {
         toggleDarkMode,
@@ -47,16 +48,28 @@ createApp({
         isPagesMenuOpen.value = !isPagesMenuOpen.value;
       }
 
-        return {
-          modal,
-          isDarkMode,
-          openModal,
-          toggleDarkMode,
-          isSideMenuOpen,
-          isPagesMenuOpen,
-          togglePagesMenu,
-          currentFooter
+      function getOrFillData(key, value) {
+        if (!!formData.value[key]) {
+          return formData.value[key];
         }
+        formData.value[key] = value;
+        return formData.value[key];
+      }
+
+      return {
+        modal,
+        isDarkMode,
+        openModal,
+        toggleDarkMode,
+        isSideMenuOpen,
+        isPagesMenuOpen,
+        togglePagesMenu,
+        currentFooter,
+        formData,
+        getFormValue,
+        updateFormData,
+        getOrFillData
+      }
     }
 })
 .use(plugin, defaultConfig)

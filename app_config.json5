@@ -1,13 +1,17 @@
 {
   environments: [
     {
-      key: 'production',
+      key: 'sandbox',
+      options: {
+        // The view service is the main service
+        when_no_data_is_saved_show_fake_data: false,
+      },
       containers: [
         // Main view service
         {
           name: 'confetti-cms/view-php',
           hosts: [
-            'confetti-cms.com',
+            'office_dev_105.confetti-cms.localhost',
           ],
           paths: [
             '/',
@@ -16,57 +20,7 @@
         // For all other services
         {
           hosts: [
-            'confetti-cms.com',
-          ],
-          paths: [
-            '/conf_api',
-          ],
-          user_service_in_uri: true,
-        },
-      ],
-    },
-    {
-      key: 'bart',
-      containers: [
-        // Main view service
-        {
-          name: 'confetti-cms/view-php',
-          hosts: [
-            'bart.confetti-cms.com',
-          ],
-          paths: [
-            '/',
-          ],
-        },
-        // For all other services
-        {
-          hosts: [
-            'bart.confetti-cms.com',
-          ],
-          paths: [
-            '/conf_api',
-          ],
-          user_service_in_uri: true,
-        },
-      ],
-    },
-    {
-      key: 'daniel',
-      containers: [
-        // Main view service
-        {
-          name: 'confetti-cms/view-php',
-          hosts: [
-            'daniel.confetti-cms.com',
-          ],
-          paths: [
-            '/',
-          ],
-        },
-        // For all other services
-        {
-          hosts: [
-            'daniel.confetti-cms.com',
+            'office_dev_105.confetti-cms.localhost',
           ],
           paths: [
             '/conf_api',

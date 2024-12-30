@@ -3,15 +3,14 @@
     {
       key: 'sandbox',
       options: {
-        // The view service is the main service
-        when_no_data_is_saved_show_fake_data: false,
+        when_no_data_is_saved_show_fake_data: true,
       },
       containers: [
         // Main view service
         {
           name: 'confetti-cms/view-php',
           hosts: [
-            'office_dev_105.confetti-cms.localhost',
+            '__HOST__',
           ],
           paths: [
             '/',
@@ -20,7 +19,7 @@
         // For all other services
         {
           hosts: [
-            'office_dev_105.confetti-cms.localhost',
+            '__HOST__',
           ],
           paths: [
             '/conf_api',

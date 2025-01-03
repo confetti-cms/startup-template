@@ -1,4 +1,4 @@
-FROM alpine:3.20 as tailwindcss_admin
+FROM alpine:3.20 as default_cmd
 
 WORKDIR /src
 COPY . .

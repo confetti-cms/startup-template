@@ -1,7 +1,8 @@
 {
   environments: [
     {
-      key: 'sandbox',
+      key: 'dev',
+      stage: 'develop',
       options: {
         when_no_data_is_saved_show_fake_data: true,
       },

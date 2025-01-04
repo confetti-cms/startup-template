@@ -1,8 +1,11 @@
 {
   environments: [
     {
+      // Key is just a name for the environment
       key: 'dev',
-      stage: 'develop',
+      // Stage is used to determine which code (target) in the Dockerfile to run
+      // For now, we support 'development' and 'production'
+      stage: 'development',
       options: {
         when_no_data_is_saved_show_fake_data: true,
       },

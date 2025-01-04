@@ -1,4 +1,4 @@
-FROM alpine:3.20 as default_cmd
+FROM alpine:3.20 as development_cmd
 
 WORKDIR /src
 COPY . .
@@ -18,4 +18,3 @@ CMD /bin/tailwindcss \
 -c /src/tailwind.config.js \
 -o /var/resources/website__tailwind/tailwind.output.css \
 --watch
-

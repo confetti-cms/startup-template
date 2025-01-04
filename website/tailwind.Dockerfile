@@ -1,4 +1,4 @@
-FROM alpine:3.20 as development_cmd
+FROM alpine:3.20 as development-cmd
 
 WORKDIR /src
 COPY . .

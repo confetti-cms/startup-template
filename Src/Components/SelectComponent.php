@@ -13,7 +13,7 @@ class SelectComponent extends ComponentStandard
         return 'select';
     }
 
-    public function get(): ?string
+    public function get(bool $useDefault = false): ?string
     {
         // Get saved value
         $content = $this->contentStore->findOneData($this->parentContentId, $this->relativeContentId);

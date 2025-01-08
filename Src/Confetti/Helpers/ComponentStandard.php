@@ -255,7 +255,7 @@ abstract class ComponentStandard
     /**
      * Get should return the value that is most likely to be used.
      */
-    abstract public function get(): mixed;
+    abstract public function get(bool $useDefault = false): mixed;
 
     /**
      * The return value is a full path from the root to a blade file.
@@ -277,7 +277,7 @@ abstract class ComponentStandard
         if ($this->contentStore === null) {
             throw new RuntimeException("Component '{ComponentStandard::getComponent()->key}' is only used as a reference. Therefore, you can't convert `new {ComponentStandard::getComponent()->key}` to a string.");
         }
-        $value = $this->get();
+        $value = $this->get(useDefault: true);
         if (is_array($value)) {
             return json_encode($value, JSON_THROW_ON_ERROR);
         }
@@ -415,7 +415,7 @@ abstract class ComponentStandard
         foreach ($parts as $part) {
             $idSoFar .= '/' . $part;
             // We are only interested in the pointer values
-            if (str_ends_with($part, '-') && array_key_exists($idSoFar, $content['data'])) {
+            if (str_ends_with($part, '-') && array_key_exists($idSoFar, $content['data'] ?? [])) {
                 $result[$idSoFar] = $content['data'][$idSoFar];
             }
         }

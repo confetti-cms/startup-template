@@ -13,7 +13,7 @@ class ContentComponent extends ComponentStandard
         return 'content';
     }
 
-    public function get(): ?array
+    public function get(bool $useDefault = false): ?array
     {
         // Get saved value
         $content = $this->contentStore->findOneData($this->parentContentId, $this->relativeContentId);
@@ -26,6 +26,11 @@ class ContentComponent extends ComponentStandard
         }
 
         // Get default value
+        $default = $this->getComponent()->getDecoration('default', 'default');
+        if ($default !== null) {
+            return $this->getEditorDataByText($default);
+        }
+
         if (!$this->contentStore->canFake()) {
             return null;
         }
@@ -35,7 +40,7 @@ class ContentComponent extends ComponentStandard
 
     public function __toString(): string
     {
-        $value = $this->get();
+        $value = $this->get(useDefault: true);
         if ($value === null) {
             return '';
         }

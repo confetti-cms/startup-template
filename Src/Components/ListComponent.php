@@ -116,7 +116,7 @@ class ListComponent
      * @return \IteratorAggregate|Map[]
      * @noinspection PhpDocSignatureInspection
      */
-    public function get(): IteratorAggregate
+    public function get(bool $useDefault = false): IteratorAggregate
     {
         // If has a decoration sortable, then we want to sort the list
         // But if the order is already set, then we don't want to sort the list

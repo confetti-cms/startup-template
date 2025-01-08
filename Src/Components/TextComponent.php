@@ -13,7 +13,7 @@ class TextComponent extends ComponentStandard
         return 'text';
     }
 
-    public function get(): ?string
+    public function get(bool $useDefault = false): ?string
     {
         // Get saved value
         $content = $this->contentStore->findOneData($this->parentContentId, $this->relativeContentId);
@@ -22,6 +22,15 @@ class TextComponent extends ComponentStandard
                 return null;
             }
             return $content;
+        }
+
+        $default = $this->getComponent()->getDecoration('default', 'default');
+        if ($default !== null) {
+            return $default;
+        }
+
+        if (!$this->contentStore->canFake()) {
+            return null;
         }
 
         // Guess value

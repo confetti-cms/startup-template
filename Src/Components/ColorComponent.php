@@ -13,19 +13,25 @@ class ColorComponent extends ComponentStandard
         return 'color';
     }
 
-    public function get(): ?string
+    public function get(bool $useDefault = false): ?string
     {
         // Get saved value
         $value = $this->contentStore->findOneData($this->parentContentId, $this->relativeContentId);
         if ($value !== null) {
             return htmlspecialchars((string)$value);
         }
-        if (!$this->contentStore->canFake()) {
-            return null;
+
+        $default = $this->getComponent()->getDecoration('default', 'default');
+        if ($default !== null) {
+            return $default;
         }
 
-        // Generate random color
-        return sprintf('#%06X', rand(0, 0xFFFFFF));
+        if ($this->contentStore->canFake()) {
+            // Generate random color
+            return sprintf('#%06X', rand(0, 0xFFFFFF));
+        }
+
+        return null;
     }
 
     /**

@@ -13,7 +13,7 @@ class ImageComponent extends ComponentStandard
         return 'image';
     }
 
-    public function get(): array
+    public function get(bool $useDefault = false): array
     {
         // Get saved value
         $content = $this->contentStore->findOneData($this->parentContentId, $this->relativeContentId);
@@ -48,7 +48,7 @@ class ImageComponent extends ComponentStandard
 
     public function __toString(): string
     {
-        return $this->getSource('standard') ?? '';
+        return $this->getSource('standard', useDefault: true) ?? '';
     }
 
     public function getViewAdminInput(): string
@@ -61,9 +61,9 @@ class ImageComponent extends ComponentStandard
         return '/admin/components/image/preview.mjs';
     }
 
-    public function getSource(string $media): ?string
+    public function getSource(string $media, bool $useDefault = false): ?string
     {
-        $data = $this->get();
+        $data = $this->get($useDefault);
         foreach ($data['sources'] ?? [] as $source) {
             if ($source['media'] === $media) {
                 if (empty($source['name'])) {

@@ -13,7 +13,7 @@ class DiscussionComponent extends ComponentStandard
         return 'discussion';
     }
 
-    public function get(): ?array
+    public function get(bool $useDefault = false): ?array
     {
         // Get saved value
         $value = $this->contentStore->findOneData($this->parentContentId, $this->relativeContentId);
@@ -93,13 +93,6 @@ class DiscussionComponent extends ComponentStandard
 
     // Label is used as a title for the admin panel
     public function label(string $label): self
-    {
-        $this->setDecoration(__FUNCTION__, get_defined_vars());
-        return $this;
-    }
-
-    // Default is used as a default value when no value is set
-    public function default(string $default): self
     {
         $this->setDecoration(__FUNCTION__, get_defined_vars());
         return $this;

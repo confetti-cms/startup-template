@@ -13,7 +13,7 @@ class BoolComponent extends ComponentStandard
         return 'bool';
     }
 
-    public function get(): ?bool
+    public function get(bool $useDefault = false): ?bool
     {
         // Get saved value
         $value = $this->contentStore->findOneData($this->parentContentId, $this->relativeContentId);
@@ -22,6 +22,13 @@ class BoolComponent extends ComponentStandard
             // Value can be other types than an int, like a string from a previous/other type.
             // So that is the reason for the strict comparison.
             return $value === 1;
+        }
+
+
+
+        $default = $this->getComponent()->getDecoration('default', 'default');
+        if ($default !== null) {
+            return $default;
         }
 
         if ($this->contentStore->canFake()) {

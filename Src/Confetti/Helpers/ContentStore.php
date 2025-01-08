@@ -274,7 +274,7 @@ class ContentStore
             return $this->content['data'][$id];
         }
 
-        if (array_key_exists($id, $this->content['data'])) {
+        if (array_key_exists($id, $this->content['data'] ?? [])) {
             return $this->content['data'][$id];
         }
         $this->selectInRoot($id);

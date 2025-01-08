@@ -29,7 +29,7 @@ class SelectFileComponent extends ComponentStandard implements SelectModelInterf
         $this->contentStore->joinPointer($this->relativeContentId);
     }
 
-    public function get(): ?string
+    public function get(bool $useDefault = false): ?string
     {
         // For now, we do not allow to select itself. Then we create a recursive 'from' value. For example:
         // /model/feature/feature~2HEF1WN1HS/type-/value-/value-/value-/value-/value-/value-/value-/value-/
@@ -39,12 +39,21 @@ class SelectFileComponent extends ComponentStandard implements SelectModelInterf
         }
 
         // Get saved value
-        return $this->contentStore->findOneData($this->parentContentId, $this->relativeContentId);
+        $result = $this->contentStore->findOneData($this->parentContentId, $this->relativeContentId);
+        if ($result === null) {
+            return $this->getComponent()->getDecoration('default', 'default');
+        }
+
+        return $result;
     }
 
     public function getView(): ?string
     {
         $file = $this->get();
+        if ($file === null) {
+            return null;
+        }
+
         if (!str_ends_with($file, '.blade.php')) {
             if ($file === null) {
                 return null;

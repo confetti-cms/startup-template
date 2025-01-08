@@ -2,9 +2,9 @@
   environments: [
     {
       // Key serves as a name for the environment
-      // Common values: 'prod' or 'dev', but it’s flexible
+      // Common values: 'prod', test or 'dev', but it’s flexible
       // In teams, you can use your name for your personal development environment
-      key: 'dev',
+      name: 'dev',
       // Determines the target code in the Dockerfile to run
       // - development (monitors code changes)
       // - production (optimized for speed)

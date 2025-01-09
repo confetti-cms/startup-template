@@ -77,8 +77,6 @@ export class TextDemo extends HTMLElement {
                     <span class="${() => this.getStyle()}">CMS</span>` : this.state.value}&nbsp;</span>
                     ${() => this.state.barTools?.length >= 3 ? html`
                         <div class="absolute flex items-center space-x-1 p-1 border rounded-md w-fit bg-white">
-<!--                               when active-->
-<!--                             text-black hover:bg-blue-100when not active-->
                             <button class="${() => `font-bold py-1 px-2 rounded ` + (this.state.bold ? 'text-blue-600 bg-blue-100' : 'text-black hover:bg-blue-100')}" @click="${() => this.#toggleBold()}">B</button>
                             ${() => this.state.barTools?.length >= 8 ? html`
                                 <button class="${() => `italic py-1 px-3 rounded ` + (this.state.italic ? 'text-blue-600 bg-blue-100' : 'text-black hover:bg-blue-100')}" @click="${() => this.#toggleItalic()}">I</button>` : ''}
@@ -92,28 +90,30 @@ export class TextDemo extends HTMLElement {
     }
 
     #typeLabel() {
-        // Slowly build the label as if we type it "Title Main"
-        const label = 'Title Main';
-        let i = 0;
-        const interval = setInterval(() => {
-            this.state.label = label.substring(0, i);
-            i++;
-            if (i > label.length) {
-                clearInterval(interval);
-            }
-        }, 100);
-
-        // Slowly only remove the " Main" part of the label
         setTimeout(() => {
-            let i = label.length;
+            // Slowly build the label as if we type it "Title Main"
+            const label = 'Title Main';
+            let i = 0;
             const interval = setInterval(() => {
                 this.state.label = label.substring(0, i);
-                i--;
-                if (i < ' Main'.length) {
+                i++;
+                if (i > label.length) {
                     clearInterval(interval);
                 }
-            }, 100);
-        }, 2000);
+            }, 125);
+
+            // Slowly only remove the " Main" part of the label
+            setTimeout(() => {
+                let i = label.length;
+                const interval = setInterval(() => {
+                    this.state.label = label.substring(0, i);
+                    i--;
+                    if (i < ' Main'.length) {
+                        clearInterval(interval);
+                    }
+                }, 100);
+            }, 2500);
+        }, 1000);
     }
 
     #toggleRequired() {

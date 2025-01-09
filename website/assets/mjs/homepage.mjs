@@ -77,6 +77,8 @@ export class TextDemo extends HTMLElement {
                     <span class="${() => this.getStyle()}">CMS</span>` : this.state.value}&nbsp;</span>
                     ${() => this.state.barTools?.length >= 3 ? html`
                         <div class="absolute flex items-center space-x-1 p-1 border rounded-md w-fit bg-white">
+                            <!--                               when active-->
+                            <!--                             text-black hover:bg-blue-100when not active-->
                             <button class="${() => `font-bold py-1 px-2 rounded ` + (this.state.bold ? 'text-blue-600 bg-blue-100' : 'text-black hover:bg-blue-100')}" @click="${() => this.#toggleBold()}">B</button>
                             ${() => this.state.barTools?.length >= 8 ? html`
                                 <button class="${() => `italic py-1 px-3 rounded ` + (this.state.italic ? 'text-blue-600 bg-blue-100' : 'text-black hover:bg-blue-100')}" @click="${() => this.#toggleItalic()}">I</button>` : ''}
@@ -202,12 +204,10 @@ export class TextDemo extends HTMLElement {
                     iValue = 0;
                 }
                 this.state.barTools = methodValue.substring(0, iValue);
-                if (this.state.barTools?.length >= 3) {
-                    this.state.bold = true;
-                }
                 this.state.barContent = `<span class="pl-4">` + prefix + methodPrefix.substring(0, iMethod) + suffix + `<span class="text-green-700">${methodValue.substring(0, iValue)}</span>` + prefix + methodSuffix.substring(0, i - methodPrefix.length - methodValue.length) + suffix + `</span>`;
                 i++;
                 if (i > (methodPrefix + methodValue + methodSuffix).length || !this.state.bar) {
+                    this.state.bold = true;
                     clearInterval(interval);
                 }
                 if (!this.state.bar) {

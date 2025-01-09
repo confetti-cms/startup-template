@@ -84,6 +84,7 @@
                 if (this.data.value === null) {
                     this.data.value = this.decorations.default.default ? this.decorations.default.default : '';
                     Storage.saveLocalStorageModel(this.id, this.data.value, this.dataset.component);
+                    window.dispatchEvent(new CustomEvent('local_content_changed'));
                 }
             }
 

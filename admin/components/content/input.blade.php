@@ -94,6 +94,7 @@
                 // Here we set the default value if it is not set.
                 if (this.original === null && !Storage.hasLocalStorageItem(this.id)) {
                     Storage.saveLocalStorageModel(this.id, this.default_data, this.dataset.component);
+                    window.dispatchEvent(new CustomEvent('local_content_changed'));
                 }
             }
 

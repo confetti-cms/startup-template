@@ -57,6 +57,7 @@
                 // Here we set the default value if it is not set.
                 if (this.original === null && !Storage.hasLocalStorageItem(this.id)) {
                     Storage.saveLocalStorageModel(this.id, this.decorations.default.default ? this.decorations.default.default : '', this.dataset.component);
+                    window.dispatchEvent(new CustomEvent('local_content_changed'));
                 }
             }
 

@@ -1,4 +1,3 @@
-@php($header = newRoot(new \model\homepage\header)->label('Header'))
 <header class="lg:container lg:mx-auto z-50 bg-white/80 backdrop-blur border-b border-gray-100 w-full">
     <nav class="relative">
         <div class="flex items-center justify-between px-4 py-2">

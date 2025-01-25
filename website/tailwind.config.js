@@ -1,5 +1,3 @@
-const colors = require('tailwindcss/colors')
-
 module.exports = {
     content: [
         './**/*.blade.php',
@@ -23,12 +21,6 @@ module.exports = {
           },
         extend: {
             colors: {
-                teal: colors.teal,
-                orange: colors.orange,
-                gray: colors.gray,
-                'color-red': '#f06060',
-                'color-yellow': '#d69051',
-                'color-green': '#2ecc71',
                 primary: {
                     DEFAULT: '#d69051',
                     light: "#d69051",
@@ -38,41 +30,6 @@ module.exports = {
                     DEFAULT: '#3dc2ff',
                     dark: "#36abe0",
                     light: "#50c8ff",
-                },
-                tertiary: {
-                    DEFAULT: '#06b6d4',
-                    dark: "#ff5e3a",
-                    light: "#ff5e3a",
-                },
-                success: {
-                    DEFAULT: '#2dd36f',
-                    dark: "#28ba62",
-                    light: "#42d77d",
-                },
-                warning: {
-                    DEFAULT: '#ffc409',
-                    dark: "#e0ac08",
-                    light: "#ffca22",
-                },
-                danger: {
-                    DEFAULT: '#eb445a',
-                    dark: "#cf3c4f",
-                    light: "#ed576b",
-                },
-                light: {
-                    DEFAULT: '#f4f5f8',
-                    dark: "#d7d8da",
-                    light: "#f5f6f9",
-                },
-                medium: {
-                    DEFAULT: '#92949c',
-                    dark: "#808289",
-                    light: "#9d9fa6",
-                },
-                dark: {
-                    DEFAULT: '#222428',
-                    dark: "#1e2023",
-                    light: "#383a3e",
                 },
             },
             maxHeight: {

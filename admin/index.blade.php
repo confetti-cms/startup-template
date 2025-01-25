@@ -25,13 +25,13 @@ if ($currentContentId === '') {
         @can('admin')
             <div class="flex h-screen dark:bg-gray-900">
                 <!-- Desktop sidebar -->
-                <aside class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block">
+                <aside class="z-20 shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block">
                     @include('admin.left_menu', [$currentContentId])
                 </aside>
 
                 <!-- Mobile sidebar -->
                 <div class="js-menu-click-away hidden fixed inset-0 z-10 flex items-end bg-gray-200 bg-opacity-50 sm:items-center sm:justify-center"></div>
-                <aside class="js-menu hidden fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden">
+                <aside class="js-menu hidden fixed inset-y-0 z-20 shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden">
                     @include('admin.left_menu', [$currentContentId])
                 </aside>
 

@@ -11,7 +11,7 @@
                 <div class="w-full px-4">
                     <div class="mx-auto max-w-[510px] text-center">
                         <h2 class="text-blue-500 mb-2 block text-lg font-semibold">Confetti comes with hosting</h2>
-                        <div class="text-dark mb-4 text-3xl font-bold text-4xl md:text-[40px]">Only pay for hosting</div>
+                        <div class="mb-4 text-3xl font-bold text-4xl md:text-[40px]">Only pay for hosting</div>
                         <p class="text-body-color text-base font-body font-bold text-balance">
                             Only pay for hosting once your site goes live. With Confetti, you don’t need any additional hosting; we manage all server resources in-house, ensuring transparent and predictable costs.
                         </p>
@@ -24,7 +24,7 @@
                         <h2 class="text-blue-500 mb-4 block text-lg font-semibold">
                             Learning, developing and testing
                         </h2>
-                        <div class="text-dark mb-5 text-[42px] font-bold">Free</div>
+                        <div class="mb-5 text-[42px] font-bold">Free</div>
                         <p
                                 class="text-body-color text-base font-body font-bold"
                         >
@@ -44,7 +44,7 @@
                         <h2 class="text-blue-500 mb-4 block text-lg font-semibold">
                             Personal & small business
                         </h2>
-                        <div class="text-dark mb-5 text-[42px] font-bold">
+                        <div class="mb-5 text-[42px] font-bold">
                             €10
                             <span class="text-body-color text-base font-medium"> / month</span>
                         </div>
@@ -55,7 +55,7 @@
                             <h2 class="text-blue-500 mb-4 block text-lg font-semibold">
                                 High traffic website
                             </h2>
-                            <div class="text-dark text-lg font-bold">
+                            <div class="text-lg font-bold">
                                 + €42 <span class="text-body-color text-base font-medium">/ month</span>
                                 <div class="text-body-color text-base font-medium">
                                     <div class="flex-col text-base font-body">

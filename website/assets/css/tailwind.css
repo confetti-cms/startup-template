@@ -106,38 +106,6 @@ input {
   @apply bg-gray-100;
 }
 
-.button {
-  @apply text-dark py-2 px-4 rounded-sm;
-}
-
 .button-primary {
   @apply bg-primary hover:bg-primary-dark text-white;
-}
-
-.button-clear {
-  @apply hover:bg-gray-100 text-dark hover:text-dark;
-}
-
-.button-round {
-  @apply rounded-full;
-}
-
-.button-ghost {
-  @apply border-2 border-primary hover:bg-primary-dark text-dark hover:text-white;
-}
-
-.button-icon {
-  @apply flex items-center;
-}
-
-.button-icon-only {
-  @apply flex items-center justify-center;
-  width: 44px;
-  height: 44px;
-}
-
-.button-icon-only .icon {
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }

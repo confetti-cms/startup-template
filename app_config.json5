@@ -16,7 +16,7 @@
       containers: [
         // Main view service
         {
-          name: 'confetti-cms/view-php',
+          name: 'view',
           hosts: [
             '__HOST__',
           ],

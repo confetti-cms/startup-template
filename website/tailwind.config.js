@@ -6,15 +6,6 @@ module.exports = {
     ],
     darkMode: 'class',
     theme: {
-        customForms: (theme) => ({
-            default: {
-                'input, textarea': {
-                    '&::placeholder': {
-                        color: theme('colors.gray.400'),
-                    },
-                },
-            },
-        }),
         fontFamily: {
             'headings': ['pluto'],
             'body': ['sans-serif'],

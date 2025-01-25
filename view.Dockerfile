@@ -41,7 +41,7 @@ WORKDIR /src
 
 COPY --chown=www-data:www-data . .
 
-# Check of composer.lock for `composer install`
-# Check of composer.json for include changes
-# Check of vendor/composer for `composer dump-autoload`
+# Check composer.lock for `composer install`
+# Check composer.json for included files
+# Check vendor/composer for `composer dump-autoload`
 CMD ["sh", "-c", "ls composer.* vendor/composer | entr -r timeout 5s composer install"]

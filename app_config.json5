@@ -18,7 +18,8 @@
         {
           name: 'confetti-cms/view-php',
           hosts: [
-            '__HOST__',
+            'startup-template.confetti-cms.localhost',
+//            '__HOST__',
           ],
           paths: [
             '/',
@@ -27,7 +28,8 @@
         // For all api services
         {
           hosts: [
-            '__HOST__',
+            'startup-template.confetti-cms.localhost'
+//            '__HOST__',
           ],
           paths: [
             // Replace '__SERVICE__' with the name of the service.

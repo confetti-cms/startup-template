@@ -1,7 +1,7 @@
 @php
-    /** @var \Src\Components\ListComponent $model */
-    /** @var \Confetti\Helpers\ComponentEntity $component */
-    use Src\Components\ListComponent;
+    /** @var \App\Components\ListComponent $model */
+    /** @var \Confetti\Foundation\Helpers\ComponentEntity $component */
+    use App\Components\ListComponent;
     $component = $model->getComponent();
     [$columns, $originalRows] = ListComponent::getColumnsAndRows($model);
 @endphp
@@ -98,7 +98,7 @@
                                         <td class="hidden sm:table-cell sm:w-[140px]">
                                             <div class="${() => `flex flex-nowrap float-right ` + (state.confirmDelete ? `collapse` : ``)}">
                                                 <button type="button" class="float-right justify-between px-2 py-1 m-3 ml-0 text-sm font-medium leading-5 cursor-pointer text-white bg-emerald-700 hover:bg-emerald-800 border border-transparent rounded-md"
-                                                   @click="${() => this.#editItem(row.id)}">
+                                                        @click="${() => this.#editItem(row.id)}">
                                                     Edit
                                                 </button>
                                                 <button type="button" class="float-right justify-between px-2 py-1 m-3 ml-0 text-sm font-medium leading-5 text-white bg-emerald-700 hover:bg-emerald-800 border border-transparent rounded-md"
@@ -125,7 +125,7 @@
                     </div>
                     <div class="m-2 h-10 block">
                         <button type="button" class="float-right justify-between px-2 py-1 m-2 ml-0 text-sm font-medium leading-5 cursor-pointer text-white bg-emerald-700 hover:bg-emerald-800 border border-transparent rounded-md"
-                           @click="${() => this.#redirectToNew()}">
+                                @click="${() => this.#redirectToNew()}">
                             Add ${this.label}
                         </button>
                     </div>

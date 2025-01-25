@@ -1,8 +1,7 @@
 <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
     <div class="container flex items-center justify-between h-full px-3 mx-auto">
         <!-- Mobile hamburger -->
-        <button type="button" class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:ring"
-                @click="toggleSideMenu" aria-label="Menu">
+        <button type="button" id="menu-toggle" class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:ring" aria-label="Menu">
             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd"
                       d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
@@ -13,38 +12,24 @@
             {{-- placeholder for items in the middle --}}
         </div>
 
-        {{--            <li class="flex">--}}
-        {{--                <button class="rounded-md focus:outline-none focus:ring dark:text-gray-300"--}}
-        {{--                        aria-label="Toggle color mode">--}}
-        {{--                    <template x-if="!dark">--}}
-        {{--                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">--}}
-        {{--                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>--}}
-        {{--                        </svg>--}}
-        {{--                    </template>--}}
-        {{--                    <template x-if="dark">--}}
-        {{--                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">--}}
-        {{--                            <path fill-rule="evenodd"--}}
-        {{--                                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"--}}
-        {{--                                  clip-rule="evenodd"></path>--}}
-        {{--                        </svg>--}}
-        {{--                    </template>--}}
-        {{--                </button>--}}
-        {{--            </li>--}}
-
         <!-- Profile menu -->
         <div class="relative">
             <button type="button" class="align-middle rounded-full focus:ring focus:outline-none pr-3">
-                <a href="/">confetti.com</a>
-                {{--                <a href="/" class="truncate">{{ $_SERVER['HTTP_HOST'] }}</a>--}}
+                <a href="/">
+                    <!-- Go to website svg -->
+                    <span class="md:hidden text-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24"><path stroke="currentColor" d="M 5 3 C 3.9069372 3 3 3.9069372 3 5 L 3 19 C 3 20.093063 3.9069372 21 5 21 L 19 21 C 20.093063 21 21 20.093063 21 19 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 5 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"></path></svg>
+                    </span>
+                    <span class="hidden md:inline text-sm font-semibold text-gray-700">{{ $_SERVER['HTTP_HOST'] }}</span>
+                </a>
+
             </button>
-            <button type="button" class="align-middle rounded-full focus:ring focus:outline-none pr-3"
-                    @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
-                    aria-haspopup="true">
+            <button type="button" class="align-middle rounded-full focus:ring focus:outline-none pr-3">
                 <img class="object-cover w-8 h-8 rounded-full"
                      src="@userPicture"
                      alt="" aria-hidden="true"/>
             </button>
-            <template x-if="isProfileMenuOpen">
+            <template>
                 <ul class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
                     aria-label="submenu">
                     <li class="flex">

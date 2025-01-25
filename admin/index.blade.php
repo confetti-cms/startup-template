@@ -1,5 +1,5 @@
 @php
-$currentContentId = str_replace('/admin', '', request()->uri());
+$currentContentId = rtrim(str_replace('/admin', '', request()->uri()), '/');
 if ($currentContentId === '') {
     $currentContentId = '/model';
 }
@@ -16,15 +16,6 @@ if ($currentContentId === '') {
     <link rel="stylesheet" href="/resources/admin__tailwind/tailwind.output.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100" rel="stylesheet" />
     <script src="/admin/assets/js/thema.js" defer></script>
-    <style>
-     ._loading-hide {
-         display: none;
-     }
-     ._loading-blur {
-        filter: blur(1px);
-        pointer-events: none;
-     }
-    </style>
 </head>
 
 <body class="text-gray-700 overflow-hidden">
@@ -38,11 +29,11 @@ if ($currentContentId === '') {
                     @include('admin.left_menu', [$currentContentId])
                 </aside>
 
-{{--                <!-- Mobile sidebar -->--}}
-{{--                <div x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-10 flex items-end bg-gray bg-opacity-50 sm:items-center sm:justify-center"></div>--}}
-{{--                <aside class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden" x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150" x-transition:enter-start="opacity-0 transform -translate-x-20" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 transform -translate-x-20" @click.away="closeSideMenu" @keydown.escape="closeSideMenu">--}}
-{{--                    @include('admin.left_menu', [$currentContentId])--}}
-{{--                </aside>--}}
+                <!-- Mobile sidebar -->
+                <div class="js-menu-click-away hidden fixed inset-0 z-10 flex items-end bg-gray-200 bg-opacity-50 sm:items-center sm:justify-center"></div>
+                <aside class="js-menu hidden fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden">
+                    @include('admin.left_menu', [$currentContentId])
+                </aside>
 
                 <div class="flex flex-col flex-1">
                     @include('admin.header', [$currentContentId])
@@ -60,6 +51,19 @@ if ($currentContentId === '') {
         @endcan
     @endguest
     @stack('style_*')
+    @pushonce('end_of_body_menu')
+        <script>
+            // Toggle menu visibility
+            const menuToggle = document.getElementById('menu-toggle');
+            const menu = document.getElementsByClassName('js-menu')[0];
+            const menuClickAway = document.getElementsByClassName('js-menu-click-away')[0];
+
+            menuToggle.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                menuClickAway.classList.toggle('hidden');
+            });
+        </script>
+    @endpushonce
     @stack('end_of_body_*')
 </body>
 </html>

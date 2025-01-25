@@ -31,7 +31,9 @@
           ],
           paths: [
             // Replace '__SERVICE__' with the name of the service.
-            // For example: Service "media" will be available at '/conf_api/media'
+            // The place of the Dockerfile generates the service name.
+            // For /website/tailwind.Dockerfile, the service name will be 'website-tailwind'.
+            // The service 'website-tailwind' will be available at '/conf_api/website-tailwind'.
             '/conf_api/__SERVICE__',
           ],
         },

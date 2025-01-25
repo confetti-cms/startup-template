@@ -1,4 +1,4 @@
-@php /** @var \Src\Components\ImageComponent $model */ @endphp
+@php /** @var \App\Components\ImageComponent $model */ @endphp
         <!--suppress HtmlUnknownTag, HtmlUnknownAttribute -->
 <image-component
         data-id="{{ $model->getId() }}"

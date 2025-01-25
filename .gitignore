@@ -25,6 +25,16 @@ logs/
 *.lock
 *.~*
 
+# PHP dependencies and cache
+vendor/
+!composer.json
+# Do not ignore Composer lock file:
+# https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
+!composer.lock
+
+# Temporary PHP files
+*.php~
+
 # Node.js dependencies and frontend tools
 node_modules/
 npm-debug.log*

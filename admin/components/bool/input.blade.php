@@ -1,4 +1,4 @@
-@php /** @var \Src\Components\BoolComponent $model */ @endphp
+@php /** @var \App\Components\BoolComponent $model */ @endphp
         <!--suppress HtmlUnknownTag -->
 <bool-component
         data-id="{{ $model->getId() }}"

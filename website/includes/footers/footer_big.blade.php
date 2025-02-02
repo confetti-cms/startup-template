@@ -13,7 +13,7 @@
                                     href="/"
                                     class="flex items-center"
                             >
-                                Confetti CMS
+                                Your Company
                             </a>
                             <a href="/" class="mt-2 inline-block text-sm">
                                 {{ $footer->text('subtitle')->min(1)->max(30) }}

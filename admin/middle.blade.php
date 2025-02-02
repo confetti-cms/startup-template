@@ -93,7 +93,7 @@
                        class="basis-1/4 px-5 py-3 flex items-center justify-center text-sm font-medium leading-5 text-white bg-emerald-700 hover:bg-emerald-800 border border-transparent rounded-md">
                         Back
                     </a>
-                    <button class="${() => `{{ $canBeDeleted ? 'basis-1/2' : 'basis-3/4 ' }} _loader_btn px-5 py-3 flex items-center justify-center text-sm font-medium leading-5  border rounded-md ${state.count > 0 ? `text-white bg-emerald-700 hover:bg-emerald-800 border-transparent` : `border-gray-700 disabled}`}`}"
+                    <button class="${() => `{{ $canBeDeleted ? 'basis-1/2' : 'basis-3/4 ' }} _loader_btn px-5 py-3 flex items-center justify-center text-sm font-medium leading-5 border rounded-md ${state.count > 0 ? `text-white bg-emerald-700 hover:bg-emerald-800 border-transparent cursor-pointer` : `border-gray-700 disabled}`}`}"
                             @click="${(e) => publish(e)}"
                             disabled="${() => state.count > 0 ? false : `disabled`}"
                         >

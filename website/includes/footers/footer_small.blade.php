@@ -4,27 +4,19 @@
       <span class="text-sm text-gray-500 sm:text-center">
           © {{ date('Y') }}
           <a href="/" class="hover:underline">
-              {{ $footer->text('first_line')->default('Confetti™') }}
+              Your Company
           </a>
     </span>
         <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 sm:mt-0">
             <li>
-                <a href="#" class="mr-4 hover:underline md:mr-6 ">
-                    {{ $footer->text('text_link_1')->default('About') }}
+                <a href="/contact" class="mr-4 hover:underline md:mr-6 ">
+                    {{ $footer->text('text_link_1')->default('Contact') }}
                 </a>
             </li>
             <li>
-                <a href="#" class="mr-4 hover:underline md:mr-6">
+                <a href="/privacy-policy" class="mr-4 hover:underline md:mr-6">
                     {{ $footer->text('text_link_2')->default('Privacy Policy') }}
                 </a>
-            </li>
-            <li>
-                <a href="#" class="mr-4 hover:underline md:mr-6">
-                    {{ $footer->text('text_link_3')->default('Licensing') }}
-                </a>
-            </li>
-            <li>
-                <a class="js-contact-e hover:underline"></a>
             </li>
         </ul>
     </div>

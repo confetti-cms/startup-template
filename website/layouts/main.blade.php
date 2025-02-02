@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Confetti CMS</title>
+    <title>@yield('head_title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/resources/website__tailwind/tailwind.output.css"/>
     <link rel="stylesheet" href="/website/assets/css/fonts.css"/>
+
+    <link rel="manifest" href="/website/assets/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="32x32" href="/website/assets/favicon/favicon-32x32.png">
     <!-- Icons from: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
     @stack('style_*')
 </head>
@@ -13,7 +16,7 @@
 {{--    @include('website.under_construction')--}}
 {{--@else()--}}
 
-@include('website.includes.header')
+@include('website.header')
 
 @yield('content')
 
@@ -24,19 +27,6 @@
 
 @stack('end_of_body_*')
 
-<script>
-    // Obfuscated email parts
-    const part1 = '&#114;&#101;&#105;&#110;&#100;&#101;&#114;&#116;&#118;&#101;&#116;&#116;&#101;&#114;';
-    const part2 = '&#64;';
-    const part3 = '&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;';
-
-    // Decode and render the email
-    const email = part1 + part2 + part3;
-    document.querySelectorAll('.js-contact-e').forEach(el => {
-        el.textContent = email.replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(dec));
-        el.href = 'mailto:' + email.replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(dec));
-    });
-</script>
 </body>
 </html>
 

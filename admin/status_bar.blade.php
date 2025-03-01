@@ -33,11 +33,12 @@
                 title = title ? title.split('. ').map(line => line.trim()).join('.<br>') : null
                 // If status already exists, update it. Otherwise, add it.
                 const statusIndex = this.statuses.findIndex(status => status.id === id);
+
                 if (statusIndex !== -1) {
                     let originalTitle = this.statuses[statusIndex].originalTitle;
                     let message = originalTitle;
                     if (title && message !== title) {
-                        message += '<br><span class="text-gray-400">' + title + '</span>';
+                        message = '<span class="text-gray-500">' + title + '</span>';
                     }
                     this.statuses[statusIndex] = {id, state, title: message, originalTitle: originalTitle};
                 } else {

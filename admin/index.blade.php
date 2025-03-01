@@ -63,6 +63,49 @@ if ($currentContentId === '') {
             });
         </script>
     @endpushonce
+    @if(config('environment.options.dev_tools'))
+    @pushonce('end_of_body_dev_tools')
+        <script type="module" defer>
+            // With this script, the page will reload when a file is changed
+            // We use /website because the website also needs this
+            import {DevTools} from "/website/assets/js/dev_tools.mjs";
+
+            DevTools.subscribeFileChanges(
+                (event) => {
+                    window.dispatchEvent(new CustomEvent('state', {
+                        detail: {
+                            id: 'local_file_changed',
+                            state: 'loading',
+                            title: event.message,
+                        }
+                    }));
+                },
+                (event, eventSource) => {
+                    window.dispatchEvent(new CustomEvent('state', {
+                        detail: {
+                            id: 'local_file_changed',
+                            state: 'success',
+                            title: event.message,
+                        }
+                    }));
+                    // Prevent error because the event source is closed due the reload
+                    eventSource.close();
+                    // Reload the page
+                    location.reload();
+                },
+                (message) => {
+                    window.dispatchEvent(new CustomEvent('state', {
+                        detail: {
+                            id: 'local_file_changed',
+                            state: 'error',
+                            title: message,
+                        }
+                    }));
+                }
+            );
+        </script>
+    @endpushonce
+    @endif
     @stack('end_of_body_*')
 </body>
 </html>

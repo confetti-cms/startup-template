@@ -25,8 +25,8 @@
 
 {{--    @endguest--}}
 
+@include('website.includes.dev_tools')
 @stack('end_of_body_*')
 
 </body>
 </html>
-

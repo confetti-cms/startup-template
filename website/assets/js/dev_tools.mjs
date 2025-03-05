@@ -9,7 +9,6 @@ export class DevTools {
      */
     static subscribeFileChanges(callbackLocalFileChanged, callbackRemoteFileProcessed, errorCallback) {
         const eventSource = new EventSource('http://localhost:8001/messages');
-        console.log('Subscribed to file changes.');
 
         // If the user switches tabs, the connection might break.
         document.addEventListener("visibilitychange", () => {

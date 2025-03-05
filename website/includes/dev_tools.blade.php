@@ -48,7 +48,7 @@
                             // Prevent error because the event source is closed due the reload
                             eventSource.close();
                             // Reload the page
-                            location.reload();
+                            document.location.reload();
                             document.title = "🔄 " + event.message;
                             this.data.error = null;
                             this.data.info = event.message;

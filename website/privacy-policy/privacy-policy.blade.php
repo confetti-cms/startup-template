@@ -3,7 +3,7 @@
 @extends('website.layouts.main')
 @section('head_title', 'Privacy Policy')
 @section('content')
-    <!-- Generated with prompt: Generate a privacy policy page with a title and a content block. -->
+    {{-- Generated with prompt: Generate a privacy policy page with a title and a content block. --}}
     <div class="bg-white py-24 sm:py-32">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0">

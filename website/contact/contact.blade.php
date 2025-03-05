@@ -3,7 +3,7 @@
 @extends('website.layouts.main')
 @section('head_title', 'Contact')
 @section('content')
-    <!-- Generated with prompt: Generate a contact page with 4 blocks with location, phone, email and social media links. Link to Google Maps, phone number, email address and LinkedIn profile. -->
+    {{-- Generated with prompt: Generate a contact page with 4 blocks with location, phone, email and social media links. Link to Google Maps, phone number, email address and LinkedIn profile. --}}
     <div class="bg-white py-24 sm:py-32">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0">
@@ -44,8 +44,15 @@
                     </div>
                 </div>
             </div>
+            @if($page->form->get())
+            <div class="mx-auto max-w-xl mt-16 mb-8 p-4 border-y">
+                <h3 class="text-2xl font-bold mb-4">{{ $page->form->title() }}</h3>
+                {!! $page->tally('form')->withPadding()->embedUrl() !!}
+            </div>
+            @endif
         </div>
     </div>
+
 @endsection
 
 

@@ -91,7 +91,7 @@ if ($currentContentId === '') {
                     // Prevent error because the event source is closed due the reload
                     eventSource.close();
                     // Reload the page
-                    location.reload();
+                    document.location.reload();
                 },
                 (message) => {
                     window.dispatchEvent(new CustomEvent('state', {
@@ -106,6 +106,7 @@ if ($currentContentId === '') {
         </script>
     @endpushonce
     @endif
+    @stack('boot_end_of_body_*')
     @stack('end_of_body_*')
 </body>
 </html>

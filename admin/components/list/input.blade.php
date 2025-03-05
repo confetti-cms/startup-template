@@ -50,9 +50,10 @@
 
             connectedCallback() {
                 const rows = this.service.getRows(this.sortable);
+                const title = this.decorations.labelPlural.labelPlural ?? this.label;
 
                 html`
-                    <div class="block text-bold text-xl mt-8 mb-4">${this.decorations.labelPlural.labelPlural ?? this.label}</div>
+                    <div class="block text-bold text-xl mt-8 mb-4">${title}</div>
                     <!-- border rounded -->
                     <div class="grid border text-gray-700 border-2 border-gray-200 rounded-lg bg-gray-50">
                         <table class="table-auto" style="overflow-wrap: anywhere">
@@ -93,7 +94,7 @@
                                         ${rowColumns.map((item) => html`
                                             <td class="${() => `p-3 sm:pl-4` + (state.confirmDelete ? ` blur-xs` : ``) + (i++ >= 1 ? ` hidden sm:table-cell` : ``)}"
                                                 @click="${() => (window.innerWidth < 640) ? window.location.href = '/admin' + row.id : ''}">
-                                                ${(item !== undefined && item.component !== null ? this.#loadMjs(item.id, item.value, item.component) : this.#noComponentFound(item?.id) && '')}
+                                                ${(item !== undefined && item.component !== null ? this.#loadMjs(item.id, item.value, item.component) : this.#noComponentFound(item, title) && '')}
                                             </td>`)}
                                         <td class="hidden sm:table-cell sm:w-[140px]">
                                             <div class="${() => `flex flex-nowrap float-right ` + (state.confirmDelete ? `collapse` : ``)}">
@@ -215,14 +216,23 @@
                 }
             }
 
-            #noComponentFound(id) {
-                if (id) {
-                    // Get the last part of the id /model/template-/page -> page
-                    const lastPart = id.split('/').pop();
-                    console.warn('Can\'t show value in list. Component not found. Do ->column([\'' + lastPart + '\']) match the desired component key?');
-                } else {
-                    console.warn('Can\'t show value in list. Component not found.');
+            #noComponentFound(item, title) {
+                let message = `Can't display value in the "${title}" list because the component was not found. Does ->columns() contain a valid component key?`;
+
+                if (item?.id) {
+                    // Extract the last part of the ID (e.g., /model/template-/page -> page)
+                    const lastPart = item?.id.split('/').pop();
+                    message = `Can't display value in the "${title}" list because the component was not found. Does ->column(['${lastPart}']) match the expected component key?`;
                 }
+
+                window.dispatchEvent(new CustomEvent('state', {
+                    detail: {
+                        id: item?.id + '.list_item_preview',
+                        state: 'error',
+                        title: message,
+                    }
+                }));
+                console.error(message);
             }
         });
     </script>

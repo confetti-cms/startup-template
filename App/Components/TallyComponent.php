@@ -24,12 +24,12 @@ class TallyComponent extends ComponentStandard
         return null;
     }
 
-    public function title(): ?string
+    public function getTitle(): ?string
     {
-        return $this->get()['name'] ?? null;
+        return $this->get()['title'] ?? null;
     }
 
-    public function embedUrl(): ?string
+    public function embed(): ?string
     {
         $sharedLink = $this->get()['share_link'] ?? null;
         if (!$sharedLink) {
@@ -51,8 +51,8 @@ class TallyComponent extends ComponentStandard
         }
 
         return '
-        <iframe data-tally-src="' . $embedUrl . '" loading="lazy" width="100%" height="177" frameborder="0" marginheight="0" marginwidth="0" title="Newsletter"></iframe>
-        <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector(\'script[src="\'+w+\'"]\')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>';
+        <iframe data-tally-src="' . $embedUrl . '" loading="lazy" width="100%" height="177" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+        <script>let d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector(\'script[src="\'+w+\'"]\')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>';
     }
 
     /**

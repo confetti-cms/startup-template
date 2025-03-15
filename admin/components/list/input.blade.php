@@ -30,6 +30,9 @@
             sortable;
             columns;
             originalRows;
+            data = {
+                rows: [],
+            };
             service;
             serviceApi;
             decorations = {
@@ -43,13 +46,16 @@
                 this.sortable = this.dataset.sortable;
                 this.columns = JSON.parse(this.dataset.columns);
                 this.originalRows = JSON.parse(this.dataset.original_rows);
+                this.data = reactive({
+                    rows: [],
+                });
                 this.service = new LimList(this.dataset.id, this.columns, this.originalRows);
                 this.serviceApi = this.dataset.service_api;
                 this.decorations = JSON.parse(this.dataset.decorations);
             }
 
             connectedCallback() {
-                const rows = this.service.getRows(this.sortable);
+                this.data.rows = this.service.getRows(this.sortable);
                 const title = this.decorations.labelPlural.labelPlural ?? this.label;
 
                 html`
@@ -63,17 +69,18 @@
                                     ${this.sortable ? html`
                                         <th class="w-[20px]"></th>` : ''}
                                     ${this.columns.map(column => html`
-                                        <th class="pt-4 pr-2 pb-4 pl-4">${column.label}</th>`)}
+                                        <th class="pt-4 pr-2 pb-4 pl-3">${column.label}</th>`)}
                                     <th class="w-[140px]"></th>
                                 </tr>
                                 </thead>` : ''}
                             <tbody>
-                            ${rows.length === 0 ? `
-                                <tr>
-                                    <td colspan="${this.columns.length + 2}" class="p-4 p-12 text-center">No items found, click 'Add ${this.label}' to add a new item.
-                                    </td>
-                                </tr>
-                            ` : html`${rows.map(row => {
+
+                            ${() => this.data.rows.length === 0 ? html`
+                            <tr>
+                                <td colspan="${this.columns.length + 2}" class="p-4 p-12 text-center">No items found, click 'Add ${this.label}' to add a new item.</td>
+                            </tr>` : ''}
+
+                            ${() => this.data.rows.map(row => {
                                 let state = {
                                     confirmDelete: false,
                                     changed: Storage.hasLocalStorageItems(row.id),
@@ -92,7 +99,7 @@
                                         </div>
                                     </td>` : ''}
                                         ${rowColumns.map((item) => html`
-                                            <td class="${() => `p-3 sm:pl-4` + (state.confirmDelete ? ` blur-xs` : ``) + (i++ >= 1 ? ` hidden sm:table-cell` : ``)}"
+                                            <td class="${() => (state.confirmDelete ? ` blur-xs` : ``) + (i++ >= 1 ? ` hidden sm:table-cell` : ``)}"
                                                 @click="${() => (window.innerWidth < 640) ? window.location.href = '/admin' + row.id : ''}">
                                                 ${(item !== undefined && item.component !== null ? this.#loadMjs(item.id, item.value, item.component) : this.#noComponentFound(item, title) && '')}
                                             </td>`)}
@@ -102,25 +109,25 @@
                                                         @click="${() => this.#editItem(row.id)}">
                                                     Edit
                                                 </button>
-                                                <button type="button" class="float-right justify-between px-2 py-1 m-3 ml-0 text-sm font-medium leading-5 text-white bg-emerald-700 hover:bg-emerald-800 border border-transparent rounded-md"
+                                                <button type="button" class="float-right justify-between px-2 py-1 m-3 ml-0 text-sm font-medium leading-5 cursor-pointer text-white bg-emerald-700 hover:bg-emerald-800 border border-transparent rounded-md"
                                                         @click="${() => state.confirmDelete = true}">
                                                     Delete
                                                 </button>
                                             </div>
                                             <div class="${() => `absolute flex right-0 ` + (state.confirmDelete ? `` : `collapse`)}">
                                                 <div>
-                                                    <button type="button" class="px-2 py-1 m-3 ml-0 text-sm font-medium leading-5 text-white bg-emerald-700 hover:bg-emerald-800 border border-transparent rounded-md"
+                                                    <button type="button" class="px-2 py-1 m-3 ml-0 text-sm font-medium leading-5 cursor-pointer text-white bg-emerald-700 hover:bg-emerald-800 border border-transparent rounded-md"
                                                             @click="${() => state.confirmDelete = false}">Cancel
                                                     </button>
-                                                    <button type="button" class="px-2 py-1 m-3 ml-0 text-sm font-medium leading-5 text-white bg-red-500 hover:bg-red-600 border border-transparent rounded-md"
-                                                            @click="${element => this.#removeItem(element, rows, row)}">
+                                                    <button type="button" class="px-2 py-1 m-3 ml-0 text-sm font-medium leading-5 cursor-pointer text-white bg-red-500 hover:bg-red-600 border border-transparent rounded-md"
+                                                            @click="${element => this.#removeItem(element, row)}">
                                                         Confirm
                                                     </button>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>`;
-                            })}`}
+                            })}
                             </tbody>
                         </table>
                     </div>
@@ -155,8 +162,8 @@
                 }).catch(error => {
                     const wrapper = document.getElementById(uniqueId);
                     if (wrapper) {
-                        console.error(error);
-                        wrapper.innerHTML = `Can't load component`;
+                        console.error("Can't load component in list with ID: " + id, error);
+                        wrapper.innerHTML = `<span class="p-3 line-clamp-2">Can't load component</span>`;
                     }
                 });
 
@@ -191,10 +198,11 @@
                 }
             }
 
-            #removeItem(element, rows, row) {
+            #removeItem(element, row) {
                 Storage.delete(this.serviceApi, row.id);
-                element.target.closest('tr').remove();
-                delete rows[row.id];
+
+                // We can't use `delete` because that would not trigger the reactive update
+                this.data.rows = this.data.rows.filter(r => r.id !== row.id);
             }
 
             // Before we can edit the child of a pointer, we need

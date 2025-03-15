@@ -10,6 +10,7 @@
                 <h2 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">{{ $page->text('title')->max(50)->default('Contact us') }}</h2>
                 <p class="mt-2 text-lg/8 text-gray-600">{{ $page->text('subtitle')->max(200)->default('We are here to help you. Contact us for any inquiries.') }}</p>
             </div>
+
             <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-2">
                 <div class="lg:pt-4 lg:pr-8">
                     <div class="lg:max-w-lg">
@@ -44,13 +45,17 @@
                     </div>
                 </div>
             </div>
-            @if($page->form->get())
-            <div class="mx-auto max-w-xl mt-16 mb-8 p-4 border-y">
-                <h3 class="text-2xl font-bold mb-4">{{ $page->form->title() }}</h3>
-                {!! $page->tally('form')->withPadding()->embedUrl() !!}
-            </div>
-            @endif
+
         </div>
+
+        @if($page->contact_form->get())
+            <div class="w-full mt-32">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8 pb-4">
+                    <h3 class="text-2xl font-semibold tracking-tight text-pretty text-gray-900 text-center">{{ $page->contact_form->getTitle() }}</h3>
+                </div>
+                {!! $page->tally('contact_form')->withPadding()->embed() !!}
+            </div>
+        @endif
     </div>
 
 @endsection

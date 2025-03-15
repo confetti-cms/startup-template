@@ -12,7 +12,7 @@ export default class {
      *     "share_link": "https://tally.so/r/wQ8LDQ",
      *     "embed_url": "https://tally.so/embed/wQ8LDQ",
      *     "admin_url": "https://tally.so/forms/wQ8LDQ",
-     *     "name": "Newsletter"
+     *     "title": "Newsletter"
      * }
      * @param component {object}
      * For example:
@@ -35,9 +35,11 @@ export default class {
 
     toHtml() {
         return `
-            <div class="flex items-center justify-between">
-                <div class="">${this.value.name}</div>
-                <a href="${this.value.admin_url}" target="_blank" class="-mr-3 px-2 py-1 text-sm font-medium leading-5 cursor-pointer border border-gray-700 rounded-md">Open in Tally</a>
+            <div class="flex items-center justify-between pt-3 pb-3 pl-3 pr-4 sm:pr-0">
+                ${this.value ? ` 
+                <div class="line-clamp-2">${this.value.title}</div>
+                <a href="${this.value.admin_url}" target="_blank" class="px-2 py-1 text-sm font-medium leading-5 cursor-pointer text-white bg-emerald-700 hover:bg-emerald-800 border border-transparent rounded-md whitespace-nowrap">Tally</a>
+                ` : 'Not provided'}
             </div>`;
     }
 }

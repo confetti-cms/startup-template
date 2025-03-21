@@ -4,7 +4,7 @@
 @section('head_title', 'Contact')
 @section('content')
     {{-- Generated with prompt: Generate a contact page with 4 blocks with location, phone, email and social media links. Link to Google Maps, phone number, email address and LinkedIn profile. --}}
-    <div class="bg-white py-24 sm:py-32">
+    <div class="py-24 sm:py-32">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0">
                 <h2 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">{{ $page->text('title')->max(50)->default('Contact us') }}</h2>
@@ -45,7 +45,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         @if($page->contact_form->get())

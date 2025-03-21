@@ -70,7 +70,7 @@
                 this.innerHTML = ''
                 this.style.opacity = '1';
                 html`
-                    <div class="${() => `fixed bottom-0 right-0 z-50 p-4 m-4 bg-white rounded-lg shadow-lg min-w-60 max-w-full ` + (this.statuses.some(status => status.state === this.state.error) ? `border-2 border-red-500`:``)}">
+                    <div class="${() => `fixed bottom-0 right-0 z-50 p-4 m-4 rounded-lg shadow-lg min-w-60 max-w-full ` + (this.statuses.some(status => status.state === this.state.error) ? `border-2 border-red-500`:``)}">
                         <ul class="max-w-md space-y-2 text-gray-500 list-inside">
                             ${() => this.statuses.map(status => html`
                                 <li class="flex items-center">
@@ -113,7 +113,7 @@
                                 </svg>`;
                         break;
                     case this.state.error:
-                        icon = `<svg class="w-8 h-8 text-red-600 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        icon = `<svg class="w-8 h-8 text-red-600 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                 </svg>`;
                         break;

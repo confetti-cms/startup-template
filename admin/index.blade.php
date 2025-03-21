@@ -22,15 +22,15 @@ if ($currentContentId === '') {
         @include('website.includes.auth.login')
     @else
         @can('admin')
-            <div class="flex h-screen dark:bg-gray-900">
+            <div class="flex h-screen">
                 <!-- Desktop sidebar -->
-                <aside class="z-20 shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block">
+                <aside class="z-20 shrink-0 hidden w-64 overflow-y-auto dark:bg-gray-800 md:block">
                     @include('admin.left_menu', [$currentContentId])
                 </aside>
 
                 <!-- Mobile sidebar -->
                 <div class="js-menu-click-away hidden fixed inset-0 z-10 flex items-end bg-gray-200 bg-opacity-50 sm:items-center sm:justify-center"></div>
-                <aside class="js-menu hidden fixed inset-y-0 z-20 shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden">
+                <aside class="js-menu hidden fixed inset-y-0 z-20 shrink-0 w-64 mt-16 overflow-y-auto dark:bg-gray-800 md:hidden">
                     @include('admin.left_menu', [$currentContentId])
                 </aside>
 
@@ -43,7 +43,7 @@ if ($currentContentId === '') {
             </div>
             @include('admin.status_bar')
         @else
-            <div class="flex items-center justify-center w-full h-screen bg-gray-50 dark:bg-gray-900">
+            <div class="flex items-center justify-center w-full h-screen bg-gray-50">
                 You are not allowed to access this page. Go back to&nbsp;<a href="/" class="underline">the home page</a>
                 <span>&nbsp;or <a onclick="document.cookie = 'access_token=; Max-Age=0;';location.reload()" class="underline cursor-pointer">retry to login</a>.</span>
             </div>

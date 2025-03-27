@@ -15,6 +15,7 @@ if ($currentContentId === '') {
 
     <link rel="stylesheet" href="/resources/admin__tailwind/tailwind.output.css"/>
     <script src="/admin/assets/js/thema.js" defer></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/website/assets/favicon/favicon-32x32.png">
 </head>
 
 <body class="text-gray-700 overflow-hidden">
@@ -57,7 +58,7 @@ if ($currentContentId === '') {
             const menu = document.getElementsByClassName('js-menu')[0];
             const menuClickAway = document.getElementsByClassName('js-menu-click-away')[0];
 
-            menuToggle.addEventListener('click', () => {
+            menuToggle?.addEventListener('click', () => {
                 menu.classList.toggle('hidden');
                 menuClickAway.classList.toggle('hidden');
             });

@@ -9,10 +9,6 @@
     @stack('style_*')
 </head>
 <body class="text-lg overflow-x-hidden">
-{{--@guest()--}}
-{{--    @include('website.under_construction')--}}
-{{--@else()--}}
-
 @include('website.header')
 
 @yield('content')
@@ -20,8 +16,9 @@
 @php($target = newRoot(new \model\footer)->selectFile('template')->match(['/website/includes/footers/*.blade.php'])->required()->default('/website/includes/footers/footer_small.blade.php'))
 @include($target->getView(), ['model' => $target])
 
-{{--    @endguest--}}
-
+@auth()
+@include('website.includes.edit_mode')
+@endauth
 @include('website.includes.dev_tools')
 @stack('end_of_body_*')
 

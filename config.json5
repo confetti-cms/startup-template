@@ -5,6 +5,7 @@
     company_name: 'Your Company Name',
   },
   environments: [
+    // Local development environment
     {
       // Key serves as a name for the environment
       // Common values: 'prod', test or 'dev', but it’s flexible
@@ -18,6 +19,7 @@
       options: {
         when_no_data_is_saved_show_fake_data: true,
         // Enable hot reload and show development hints
+        // When enabled and the user is logged in, the dev tools will be shown
         dev_tools: true,
       },
       containers: [

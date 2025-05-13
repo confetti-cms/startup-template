@@ -111,6 +111,7 @@
             }
 
             renderedCallback() {
+                let service = undefined;
                 /**
                  * These are the settings for the editor.js
                  */

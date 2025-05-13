@@ -21,8 +21,22 @@ export class DevTools {
                 // EventSource is closed, due to page reload or navigation.
                 return;
             }
-            errorCallback('Your browser is not connected to a watcher. Start the watcher by running `conf watch` in the terminal.');
-            console.error('EventSource failed. Your page may be reloaded or the watcher may have been stopped.', error);
+            // Handle
+            if (error.message === 'NetworkError when attempting to fetch resource.') {
+                // The connection is closed, we need to reconnect.
+                console.warn('EventSource failed. Reconnecting in 5 seconds...', error);
+                eventSource.close();
+                setTimeout(() => {
+                    this.subscribeFileChanges(callbackLocalFileChanged, callbackRemoteFileProcessed, errorCallback);
+                }, 5000);
+            } else {
+                errorCallback('Your browser is not connected to a watcher. Start the watcher by running `conf watch` in the terminal and/or refresh the page.');
+                console.error('EventSource failed. Your page may be reloaded or the watcher may have been stopped.', error);
+                eventSource.close();
+                setTimeout(() => {
+                    this.subscribeFileChanges(callbackLocalFileChanged, callbackRemoteFileProcessed, errorCallback);
+                }, 60000);
+            }
         }
 
         /*
